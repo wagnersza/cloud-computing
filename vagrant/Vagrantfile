@@ -1,0 +1,22 @@
+Vagrant::Config.run do |config|
+  config.vm.box = 'ubuntu-1104-server-amd64-with-puppet-support'
+  config.vm.box_url = 'https://github.com/downloads/divio/vagrant-boxes/vagrant-ubuntu-11.04-server-amd64-v1.box'
+  config.vm.share_folder("opt2", "/opt2", "/Users/wagnersza/Documents/Projects/git/pessoal/opt2")
+  #config.vm.boot_mode = :gui
+
+  # SandBox
+  config.vm.define :sandbox do |sandbox|  
+    sandbox.vm.host_name = 'sandbox'
+    sandbox.vm.network :hostonly, "192.168.0.2"
+    sandbox.vm.customize [
+      "modifyvm", :id,
+      "--name", "sandbox",
+      "--memory", "1024"
+    ]
+    sandbox.vm.provision :puppet do |puppet|
+      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.manifest_file = 'site.pp'
+      puppet.options = ["--debug", "--templatedir templates"]
+    end
+  end
+end

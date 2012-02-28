@@ -1,0 +1,11 @@
+puppet.conf.rpm*
+*.bak
+*.bkp
+*.pyc
+*.swp
+*.rpmnew
+*.rpmsave
+*.DS_Store
+version.txt
+extra/.DS_Store
+extra/fabric/fabric-0.9b1/*
