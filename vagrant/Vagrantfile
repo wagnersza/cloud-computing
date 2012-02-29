@@ -4,19 +4,42 @@ Vagrant::Config.run do |config|
   config.vm.share_folder("opt2", "/opt2", "/Users/wagnersza/Documents/Projects/git/pessoal/opt2")
   #config.vm.boot_mode = :gui
 
-  # SandBox
-  config.vm.define :sandbox do |sandbox|  
-    sandbox.vm.host_name = 'sandbox'
-    sandbox.vm.network :hostonly, "192.168.0.2"
-    sandbox.vm.customize [
-      "modifyvm", :id,
-      "--name", "sandbox",
-      "--memory", "1024"
-    ]
-    sandbox.vm.provision :puppet do |puppet|
+  # OpenStack Comput (code-name Nova)
+  config.vm.define :nova01 do |nova01|  
+    nova01.vm.host_name = 'nova01'
+    nova01.vm.network :hostonly, "192.168.0.3"
+    # nova01.vm.customize [
+    #   "modifyvm", :id,
+    #   "--name", "nova01",
+    #   "--memory", "1024"
+    # ]
+    nova01.vm.provision :puppet do |puppet|
       puppet.module_path = ['puppet/modules','puppet-master/modules']
       puppet.manifest_file = 'site.pp'
       puppet.options = ["--debug", "--templatedir templates"]
     end
   end
+
+  # OpenStack Object Storage (code-name Swift)
+  config.vm.define :swift01 do |swift01|  
+    swift01.vm.host_name = 'swift01'
+    swift01.vm.network :hostonly, "192.168.0.5"
+    swift01.vm.provision :puppet do |puppet|
+      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.manifest_file = 'site.pp'
+      puppet.options = ["--debug", "--templatedir templates"]
+    end
+  end
+
+  # OpenStack Image Service (code-name Glance)
+  config.vm.define :glance01 do |glance01|  
+    glance01.vm.host_name = 'nova01'
+    glance01.vm.network :hostonly, "192.168.0.7"
+    glance01.vm.provision :puppet do |puppet|
+      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.manifest_file = 'site.pp'
+      puppet.options = ["--debug", "--templatedir templates"]
+    end
+  end
+
 end
