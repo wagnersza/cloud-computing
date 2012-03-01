@@ -1,6 +1,8 @@
 class novaservices::init {
   
-  include novaservices::baseos
+  include novaservices::glance
+  include novaservices::nova
+  include novaservices::swift
   
 }
 
