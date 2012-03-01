@@ -1,45 +1,24 @@
 Vagrant::Config.run do |config|
-  config.vm.box = 'ubuntu-1104-server-amd64-with-puppet-support'
-  config.vm.box_url = 'https://github.com/downloads/divio/vagrant-boxes/vagrant-ubuntu-11.04-server-amd64-v1.box'
-  config.vm.share_folder("opt2", "/opt2", "/Users/wagnersza/Documents/Projects/git/pessoal/opt2")
-  #config.vm.boot_mode = :gui
+  config.vm.box = 'ubuntu-1110-server-amd64'
+  config.vm.box_url = 'http://timhuegdon.com/vagrant-boxes/ubuntu-11.10.box'
+  # config.vm.share_folder("opt2", "/opt2", "/Users/wagnersza/Documents/Projects/git/pessoal/opt2")
+  # config.vm.boot_mode = :gui
 
-  # OpenStack Comput (code-name Nova)
-  config.vm.define :nova01 do |nova01|  
-    nova01.vm.host_name = 'nova01'
-    nova01.vm.network :hostonly, "192.168.0.3"
-    # nova01.vm.customize [
+  # OpenStack novaservices (All components of OpenStack including nova-compute)
+  config.vm.define :novaservices do |novaservices|  
+    novaservices.vm.host_name = 'novaservices'
+    novaservices.vm.network :hostonly, "10.10.10.2"
+    novaservices.vm.network :hostonly, "192.168.3.2"
+    # novaservices.vm.customize [
     #   "modifyvm", :id,
-    #   "--name", "nova01",
+    #   "--name", "novaservices",
     #   "--memory", "1024"
     # ]
-    nova01.vm.provision :puppet do |puppet|
+    novaservices.vm.provision :puppet do |puppet|
       puppet.module_path = ['puppet/modules','puppet-master/modules']
       puppet.manifest_file = 'site.pp'
-      puppet.options = ["--debug", "--templatedir templates"]
+      # puppet.options = ["--debug", "--templatedir templates"]
+      puppet.options = ["--templatedir templates"]
     end
   end
-
-  # OpenStack Object Storage (code-name Swift)
-  config.vm.define :swift01 do |swift01|  
-    swift01.vm.host_name = 'swift01'
-    swift01.vm.network :hostonly, "192.168.0.5"
-    swift01.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
-      puppet.manifest_file = 'site.pp'
-      puppet.options = ["--debug", "--templatedir templates"]
-    end
-  end
-
-  # OpenStack Image Service (code-name Glance)
-  config.vm.define :glance01 do |glance01|  
-    glance01.vm.host_name = 'nova01'
-    glance01.vm.network :hostonly, "192.168.0.7"
-    glance01.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
-      puppet.manifest_file = 'site.pp'
-      puppet.options = ["--debug", "--templatedir templates"]
-    end
-  end
-
 end
