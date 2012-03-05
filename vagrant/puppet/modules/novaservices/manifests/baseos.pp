@@ -6,6 +6,7 @@ class novaservices::baseos inherits novaservices::packages {
     owner => root,
     group => root,
     content => template("novaservices/ntp.conf.erb"),
+    require => Package["ntp"],
   }
   
   service { "ntp":

@@ -13,6 +13,7 @@ class novaservices::packages {
     command => "/usr/bin/apt-get update",
     subscribe => File["/etc/apt/sources.list"],
     refreshonly => true,
+    # require => 
   }
   
   exec { "apt-get_upgrade":
@@ -24,6 +25,11 @@ class novaservices::packages {
   exec { "add_repo_glance-core":
     command => "add-apt-repository ppa:glance-core/trunk; /usr/bin/apt-get update; touch /var/run/glance.lock",
     onlyif => "test ! -f /var/run/glance.lock",
+    require => Package["python-software-properties"]
+  }
+  
+  package { "python-software-properties":
+    ensure => latest,
   }
     
   # List of packages to be installed
@@ -31,7 +37,6 @@ class novaservices::packages {
     "bridge-utils",
     "ntp",
     "mysql-server",
-    "python-software-properties",
     "glance",
     "vim",
     "rabbitmq-server",
@@ -45,9 +50,10 @@ class novaservices::packages {
     "nova-compute",
     "euca2ools",
     "unzip",
-    # "python-software-properties",
     # "lvm2",
     "nova-volume",
+    "iscsitarget",
+    "iscsitarget-dkms",
     # "python-greenlet",
     # "python-mysqldb",        
   ]
