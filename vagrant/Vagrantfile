@@ -1,12 +1,14 @@
 Vagrant::Config.run do |config|
-  config.vm.box = 'ubuntu-1110-server-amd64'
-  config.vm.box_url = 'http://timhuegdon.com/vagrant-boxes/ubuntu-11.10.box'
+  # config.vm.box = 'ubuntu-1110-server-amd64'
+  # config.vm.box_url = 'http://timhuegdon.com/vagrant-boxes/ubuntu-11.10.box'
   # config.vm.share_folder("opt2", "/opt2", "/Users/wagnersza/Documents/Projects/git/pessoal/opt2")
   # config.vm.boot_mode = :gui
 
   # OpenStack novaservices (All components of OpenStack including nova-compute)
-  config.vm.define :novaservices do |novaservices|  
-    novaservices.vm.host_name = 'novaservices'
+  config.vm.define :novaservices_ubuntu do |novaservices|  
+    novaservices.vm.box = 'ubuntu-1110-server-amd64'
+    novaservices.vm.box_url = 'http://timhuegdon.com/vagrant-boxes/ubuntu-11.10.box'
+    novaservices.vm.host_name = 'novaservices_ubuntu'
     novaservices.vm.network :hostonly, "10.10.10.2"
     novaservices.vm.network :hostonly, "192.168.3.2"
     # novaservices.vm.customize [
@@ -23,8 +25,8 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.define :novaservices_centos do |novaservices| 
-    novaservices.vm.box = 'centos-6-x86_64'
-    novaservices.vm.box_url = 'https://vagrant-centos-6.s3.amazonaws.com/centos-6.box'
+    novaservices.vm.box = 'centos-6.0-x86_64'
+    novaservices.vm.box_url = 'http://dl.dropbox.com/u/1627760/centos-6.0-x86_64.box'
     novaservices.vm.host_name = 'novaservices_centos'
     novaservices.vm.network :hostonly, "10.10.10.3"
     novaservices.vm.network :hostonly, "192.168.3.3"
