@@ -21,4 +21,19 @@ Vagrant::Config.run do |config|
       puppet.options = ["--templatedir templates"]
     end
   end
+
+  config.vm.define :novaservices_centos do |novaservices| 
+    novaservices.vm.box = 'centos-6-x86_64'
+    novaservices.vm.box_url = 'https://vagrant-centos-6.s3.amazonaws.com/centos-6.box'
+    novaservices.vm.host_name = 'novaservices_centos'
+    novaservices.vm.network :hostonly, "10.10.10.3"
+    novaservices.vm.network :hostonly, "192.168.3.3"
+    novaservices.vm.provision :puppet do |puppet|
+      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.manifest_file = 'site.pp'
+      puppet.options = ["--templatedir templates"]
+    end
+  end
+
+
 end
