@@ -7,7 +7,7 @@ class novaservices::swift inherits novaservices::baseos {
   ## Handle RedHat derivatives      
   else {
     if ($operatingsystem == redhat) or ($operatingsystem == centos) or ($operatingsystem == fedora) {
-  
-  }
-  
+   
+    }
+  }  
 }

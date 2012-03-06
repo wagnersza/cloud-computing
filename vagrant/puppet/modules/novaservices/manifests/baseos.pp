@@ -45,5 +45,7 @@ class novaservices::baseos inherits novaservices::packages {
   ## Handle RedHat derivatives
   else {
     if ($operatingsystem == redhat) or ($operatingsystem == centos) or ($operatingsystem == fedora) {
+    
+    }
   }
 }

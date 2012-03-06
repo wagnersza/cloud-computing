@@ -152,9 +152,9 @@ class novaservices::nova inherits novaservices::baseos {
   ## Handle RedHat derivatives
   else {
     if ($operatingsystem == redhat) or ($operatingsystem == centos) or ($operatingsystem == fedora) {
-
-  }
     
+    }
+  }    
 }
 
 # Coisas que ainda não coloquei para rodar pelo puppet

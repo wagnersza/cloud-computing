@@ -4,6 +4,10 @@ node basenode {
   # }
 }
 
-node novaservices inherits basenode {
+node novaservices_ubuntu inherits basenode {
+   include role_novaservices
+}
+
+node novaservices_centos inherits basenode {
    include role_novaservices
 }

@@ -47,5 +47,6 @@ class novaservices::glance inherits novaservices::baseos {
   else {
     if ($operatingsystem == redhat) or ($operatingsystem == centos) or ($operatingsystem == fedora) {
   
+    }
   }
 }
