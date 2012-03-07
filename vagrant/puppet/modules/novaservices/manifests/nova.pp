@@ -47,7 +47,7 @@ class novaservices::nova inherits novaservices::baseos {
       # notify => Service["$nova_services"],
       ensure => present,
       owner => root,
-      group => nova,
+      group => root,
       mode => 644,
       content => template("novaservices/nova.conf.erb"),
       require =>  Package["nova-common"],
@@ -103,8 +103,8 @@ class novaservices::nova inherits novaservices::baseos {
     }
   
     file { '/home/localadmin':
-        owner => root,
-        group => nova,
+        owner => localadmin,
+        group => localadmin,
         mode => 755,
         ensure => directory,
         recurse => true,
@@ -112,8 +112,8 @@ class novaservices::nova inherits novaservices::baseos {
     }
 
     file { '/home/localadmin/creds':
-        owner => nova,
-        group => nova,
+        owner => localadmin,
+        group => localadmin,
         mode => 755,
         ensure => directory,
         recurse => true,
@@ -141,8 +141,8 @@ class novaservices::nova inherits novaservices::baseos {
     
     file { '/home/localadmin/creds/novarc':
       content => template("novaservices/novarc.erb"),
-      owner => nova,
-      group => nova,
+      owner => localadmin,
+      group => localadmin,
       mode => 755,
       recurse => true,
       require => File["/home/localadmin/creds"],
