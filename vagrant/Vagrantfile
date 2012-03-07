@@ -8,7 +8,7 @@ Vagrant::Config.run do |config|
   config.vm.define :novaservices_ubuntu do |novaservices|  
     novaservices.vm.box = 'ubuntu-1110-server-amd64'
     novaservices.vm.box_url = 'http://timhuegdon.com/vagrant-boxes/ubuntu-11.10.box'
-    novaservices.vm.host_name = 'novaservices_ubuntu'
+    novaservices.vm.host_name = 'novaservices'
     novaservices.vm.network :hostonly, "10.10.10.2"
     novaservices.vm.network :hostonly, "192.168.3.2"
     # novaservices.vm.customize [
@@ -27,7 +27,7 @@ Vagrant::Config.run do |config|
   config.vm.define :novaservices_centos do |novaservices| 
     novaservices.vm.box = 'centos-6.0-x86_64'
     novaservices.vm.box_url = 'http://dl.dropbox.com/u/1627760/centos-6.0-x86_64.box'
-    novaservices.vm.host_name = 'novaservices_centos'
+    novaservices.vm.host_name = 'novaservices'
     novaservices.vm.network :hostonly, "10.10.10.3"
     novaservices.vm.network :hostonly, "192.168.3.3"
     novaservices.vm.provision :puppet do |puppet|
