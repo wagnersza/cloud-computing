@@ -1,0 +1,8 @@
+h1. Install OpenStack on Ubuntu and CentOS in Vagrant VMs
+
+Reference: http://docs.openstack.org/diablo/openstack-compute/starter/content/index.html
+
+h2. Author
+
+Wagner Souza <wagnersza@gmail.com>
+https://github.com/wagnersza
