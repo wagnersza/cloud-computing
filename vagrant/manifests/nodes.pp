@@ -7,3 +7,7 @@ node basenode {
 node novaservices inherits basenode {
    include role_novaservices
 }
+
+node devstack inherits basenode {
+   include role_devstack
+}

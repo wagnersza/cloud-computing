@@ -1,0 +1,11 @@
+#!/bin/sh
+sudo apt-get update
+sudo apt-get install -qqy git
+git clone https://github.com/cloudbuilders/devstack.git
+cd devstack
+echo ADMIN_PASSWORD=password > localrc
+echo MYSQL_PASSWORD=password >> localrc
+echo RABBIT_PASSWORD=password >> localrc
+echo SERVICE_TOKEN=tokentoken >> localrc
+echo FLAT_INTERFACE=br100 >> localrc
+./stack.sh

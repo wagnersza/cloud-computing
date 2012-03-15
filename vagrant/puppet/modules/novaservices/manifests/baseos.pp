@@ -3,7 +3,6 @@ class novaservices::baseos inherits novaservices::packages {
   ##Handle Debian based systems
   if ($operatingsystem == debian) or ($operatingsystem == ubuntu) {  
     
-    # ntp
     user { "localadmin":
       ensure => 'present',
       home    => "/home/localadmin",
