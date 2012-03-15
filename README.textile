@@ -2,6 +2,28 @@ h1. Install OpenStack on Ubuntu and CentOS in Vagrant VMs
 
 Reference: http://docs.openstack.org/diablo/openstack-compute/starter/content/index.html
 
+
+h3. Howto install DevStack:
+
+Reference: http://devstack.org/guides/single-vm.html
+
+cd vagrant
+vagrant up devstack
+vagrant ssh devstack
+./install_devstack.sh
+
+h3. Howto install OpenStack on Ubuntu:
+
+cd vagrant
+vagrant up novaservices_ubuntu
+vagrant up novacompute_ubuntu
+
+h3. Howto install OpenStack on CentOS:
+
+cd vagrant
+vagrant up novaservices_centos
+vagrant up novacompute_centos
+
 h2. Author
 
 Wagner Souza <wagnersza@gmail.com>
