@@ -9,6 +9,16 @@ vagrant up devstack
 vagrant ssh devstack
 ./install_devstack.sh
 
+h3. Howto install OpenStack on Ubuntu:
+
+vagrant up novaservices_ubuntu
+vagrant up novacompute_ubuntu
+
+h3. Howto install OpenStack on CentOS:
+
+vagrant up novaservices_centos
+vagrant up novacompute_centos
+
 h2. Author
 
 Wagner Souza <wagnersza@gmail.com>
