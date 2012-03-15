@@ -24,6 +24,7 @@ cd vagrant
 vagrant up novaservices_centos
 vagrant up novacompute_centos
 
+
 h2. Author
 
 Wagner Souza <wagnersza@gmail.com>
