@@ -67,7 +67,7 @@ Vagrant::Config.run do |config|
     novacompute.vm.host_name = 'novaservices'
     novacompute.vm.network :hostonly, "10.10.12.3"
     novacompute.vm.network :hostonly, "192.168.12.3"
-    novaservices.vm.customize [
+    novacompute.vm.customize [
       "modifyvm", :id,
       "--name", "novaservices",
       "--memory", "1024"
