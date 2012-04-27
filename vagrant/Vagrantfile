@@ -78,4 +78,24 @@ Vagrant::Config.run do |config|
       puppet.options = ["--templatedir templates"]
     end
   end
+  
+  # Yum server
+  config.vm.define :yum do |yum| 
+    yum.vm.box = 'centos-6.0-x86_64'
+    yum.vm.box_url = 'http://dl.dropbox.com/u/1627760/centos-6.0-x86_64.box'
+    yum.vm.host_name = 'yum'
+    yum.vm.network :hostonly, "10.10.12.3"
+    yum.vm.network :hostonly, "192.168.12.3"
+    # yum.vm.customize [
+    #   "modifyvm", :id,
+    #   "--name", "yum",
+    #   "--memory", "1024"
+    # ]
+    yum.vm.provision :puppet do |puppet|
+      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.manifest_file = 'site.pp'
+      puppet.options = ["--templatedir templates"]
+    end
+  end
+  
 end
