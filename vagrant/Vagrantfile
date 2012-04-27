@@ -14,7 +14,7 @@ Vagrant::Config.run do |config|
       "--memory", "2048"
     ]
     devstack.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.module_path = ['puppet/modules']
       puppet.manifest_file = 'site.pp'
       # puppet.options = ["--debug", "--templatedir templates"]
       puppet.options = ["--templatedir templates"]
@@ -34,7 +34,7 @@ Vagrant::Config.run do |config|
     #   "--memory", "1024"
     # ]
     novaservices.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.module_path = ['puppet/modules']
       puppet.manifest_file = 'site.pp'
       # puppet.options = ["--debug", "--templatedir templates"]
       puppet.options = ["--templatedir templates"]
@@ -54,7 +54,7 @@ Vagrant::Config.run do |config|
     #   "--memory", "1024"
     # ]
     novaservices.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.module_path = ['puppet/modules']
       puppet.manifest_file = 'site.pp'
       puppet.options = ["--templatedir templates"]
     end
@@ -73,7 +73,7 @@ Vagrant::Config.run do |config|
       "--memory", "1024"
     ]
     novacompute.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.module_path = ['puppet/modules']
       puppet.manifest_file = 'site.pp'
       puppet.options = ["--templatedir templates"]
     end
@@ -92,7 +92,7 @@ Vagrant::Config.run do |config|
     #   "--memory", "1024"
     # ]
     yum.vm.provision :puppet do |puppet|
-      puppet.module_path = ['puppet/modules','puppet-master/modules']
+      puppet.module_path = ['puppet/modules']
       puppet.manifest_file = 'site.pp'
       puppet.options = ["--templatedir templates"]
     end
